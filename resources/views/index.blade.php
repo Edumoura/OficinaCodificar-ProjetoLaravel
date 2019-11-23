@@ -4,7 +4,7 @@
 <div class="card border">
 	<div class="card-body">
 		<h5 class="card-title">Orçamentos</h5>
-		
+		@if(count($orc) > 0)
 		<table class="table table-ordered table-hover">
 			<thead>
 				<tr>
@@ -19,25 +19,24 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+				@foreach($orc as $orc)				
 				
 				<tr>
-					<td>#</td>
-					<td>#</td>
-					<td>#</td>
-					<td>#</td>
-					<td>#</td>
-					<td>#</td>
+					<td>{{$orc->id}}</td>
+					<td>{{$orc->name_cliente}}</td>
+					<td>{{$orc->name_vendedor}}</td>
+					<td>{{$orc->descricao}}</td>
+					<td>{{$orc->preco}}</td>
+					<td>{{$orc->created_at}}</td>
 					<td>
 						<a href="#" class="btn btn-sm btn-primary">Editar</a>
 						<a href="#" class="btn btn-sm btn-danger">Apagar</a>
 					</td>
 				</tr>
-								
+				@endforeach					
 			</tbody>			
 		</table>
-				
-	</div>
-	
+		@endif					
+	</div>	
 </div>	
 @endsection

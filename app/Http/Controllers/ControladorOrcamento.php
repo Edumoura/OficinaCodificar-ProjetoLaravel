@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\orcamento;
+
+use App\Orcamento;
 
 
 class ControladorOrcamento extends Controller
@@ -39,7 +40,14 @@ class ControladorOrcamento extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $orc = new Orcamento();
+        $orc->name_cliente = $request->input('name_cliente');       
+        $orc->name_vendedor = $request->input('name_vendedor');
+        $orc->descricao = $request->input('descricao');
+        $orc->preco = $request->input('preco');  
+        $orc->save();
+       return redirect('/');
+
     }
 
     /**

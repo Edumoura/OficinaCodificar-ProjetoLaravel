@@ -14,3 +14,4 @@
 
 Route::get('/', 'ControladorOrcamento@index')->name('home');
 Route::get('/cadastroorcamento', 'ControladorOrcamento@create')->name('orcamento');
+Route::post('/cadastroorcamento', 'ControladorOrcamento@store')->name('orcamento');
