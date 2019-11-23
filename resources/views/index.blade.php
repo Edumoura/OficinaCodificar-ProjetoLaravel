@@ -9,11 +9,12 @@
 			<thead>
 				<tr>
 					<th>Código</th>
-					<th>Nome do cliente</th>
-					<th>Data do orçamento</th>
+					<th>Nome do cliente</th>					
 					<th>Nome do vendedor</th>
 					<th>Descrição</th>
-					<th>Valor orçado</th>	  
+					<th>Valor orçado</th>
+					<th>Data do orçamento</th>
+						  
 					
 				</tr>
 			</thead>

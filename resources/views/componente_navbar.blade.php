@@ -10,7 +10,7 @@
         <a class="nav-link" href="{{route('home')}}">Home</a>
       </li>
       <li @if($current == "orcamento") class="nav-item active" @else class="nav-item"@endif>
-        <a class="nav-link" href="#">Cadastrar Orçamento</a>
+        <a class="nav-link" href="{{route('orcamento')}}">Cadastrar Orçamento</a>
       </li>
           
     </ul>    
