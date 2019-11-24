@@ -4,7 +4,19 @@
 <div class="card border">
 	<div class="card-body">
 		<h5 class="card-title">Orçamentos</h5>
-		@if(count($orc) > 0)
+		
+		<div class="col-md-6">
+			<form action="{{route('search')}}" method="GET">
+				@csrf
+			<div class="input-group">
+				<input type="search" name="search" class="form-control">
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-primary">Search</button>					
+				</span>
+			</div>			
+		</form>			
+		</div>
+
 		<table class="table table-ordered table-hover">
 			<thead>
 				<tr>
@@ -13,7 +25,7 @@
 					<th>Nome do vendedor</th>
 					<th>Descrição</th>
 					<th>Valor orçado</th>
-					<th>Data do orçamento</th>
+					<th>Data/hora do orçamento</th>
 						  
 					
 				</tr>
@@ -27,16 +39,16 @@
 					<td>{{$orc->name_vendedor}}</td>
 					<td>{{$orc->descricao}}</td>
 					<td>{{$orc->preco}}</td>
-					<td>{{$orc->created_at}}</td>
+					<td>{{\Carbon\Carbon::parse($orc->created_at)->format('d/m/Y H:i:s')}}</td>
 					<td>
-						<a href="#" class="btn btn-sm btn-primary">Editar</a>
-						<a href="#" class="btn btn-sm btn-danger">Apagar</a>
+						<a href="{{route('editar.edit',$orc->id)}}" class="btn btn-sm btn-primary">Editar</a>
+						<a href="{{route('delete.destroy',$orc->id)}}" class="btn btn-sm btn-danger">Apagar</a>
 					</td>
 				</tr>
 				@endforeach					
 			</tbody>			
 		</table>
-		@endif					
+							
 	</div>	
 </div>	
 @endsection

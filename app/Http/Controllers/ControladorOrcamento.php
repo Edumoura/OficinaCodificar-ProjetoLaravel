@@ -22,6 +22,20 @@ class ControladorOrcamento extends Controller
 
     }
 
+    public function search(Request $request)
+    {
+        //var_dump($request->search);
+        //exit;
+        $search = $request->search;         
+        $orc = Orcamento::
+        where('name_cliente', 'like', '%'.$request->search.'%')->
+        orWhere('name_vendedor', 'like', '%'.$request->search.'%')->
+        orWhere('descricao', 'like', '%'.$request->search.'%')->
+        orWhere('preco', 'like', '%'.$request->search.'%')->
+        orWhere('created_at', 'like', '%'.$request->search.'%')->get();
+        return view('index', compact('orc'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -69,7 +83,11 @@ class ControladorOrcamento extends Controller
      */
     public function edit($id)
     {
-        //
+        $orc = Orcamento::find($id);      
+        if(isset($orc)) {
+            return view('editarorcamento', compact('orc'));
+        }
+        return redirect('/');
     }
 
     /**
@@ -81,7 +99,16 @@ class ControladorOrcamento extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $orc = Orcamento::find($id);        
+        if(isset($orc)) {            
+            $orc->name_cliente = $request->input('name_cliente');
+            $orc->name_vendedor = $request->input('name_vendedor');
+            $orc->descricao = $request->input('descricao');
+            $orc->preco = $request->input('preco');  
+            $orc->save();
+             }          
+      
+       return redirect("/");
     }
 
     /**
@@ -92,6 +119,13 @@ class ControladorOrcamento extends Controller
      */
     public function destroy($id)
     {
-        //
+          $orc = Orcamento::find($id);
+        if (isset($orc)) {
+            $orc->delete();
+        } else {
+            var_dump($orc);
+            exit;
+        }
+        return redirect('/');
     }
 }
